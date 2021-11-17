@@ -19,12 +19,13 @@ def generate_headers(method, url):
     return "HTTP/1.1 200 OK\n\n", 200
 
 
-def generate_content(code, url):
+def generate_content(code: int, url):
     if code == 404:
         return "<h1>404</h1><p>Not Found</p>"
     if code == 405:
         return "<h1>405</h1><p>Method not allowed</p>"
     return f"<h1>{URLS[url]()}</h1>"
+    # return f"<h1>Success</h1>"
 
 
 def generate_response(request):
@@ -35,6 +36,7 @@ def generate_response(request):
     return (headers + body).encode()
 
 
+# This is wsgi part
 def run():
     # AF_INET - address family - standard ip4 protocol
     # SOCK_STREAM - tcp
